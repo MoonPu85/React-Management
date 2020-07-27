@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Paper from '@material-ui/core/Paper'
 import Customer from './components/Customer';
+import Table from '@material-ui/core/Table'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = theme => ({
+
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit *3,
+     overflowX : "auto"
+    
+  },
+  table : {
+    minWidth : 1080
+  }
+})
+
 
 const customers = [{
   'id' : 1,
@@ -12,8 +33,7 @@ const customers = [{
     'address' : '인천광역시 남동구 구월남로 274 (구월동)',
     'hostname' : '이순선',
     'num'  : '032-466-1454',
-    'major2' : '예능(중)',
-    'creiculum' : '음악'
+
 },
 {
   'id' : 2,
@@ -24,8 +44,7 @@ const customers = [{
     'address' : '인천광역시 남동구 구월남로 274 (구월동)',
     'hostname' : '이순선',
     'num'  : '032-466-1454',
-    'major2' : '예능(중)',
-    'creiculum' : '음악'
+  
 
   },
   {
@@ -36,53 +55,48 @@ const customers = [{
       'major' : '예능(대)',
       'address' : '인천광역시 남동구 구월남로 274 (구월동)',
       'hostname' : '이순선',
-      'num'  : '032-466-1454',
-      'major2' : '예능(중)',
-      'creiculum' : '음악'
+      'num'  : '032-466-1454'
+  
   }
 ]
 
-function App() {
+class App extends Component  {
+  render() {
+  const {classes} = this.props;
   return (
-    <div>
-   <Customer
-   id = {customers[0].id}
-   image = {customers[0].image}
-   name = {customers[0].name}
-   type = {customers[0].type}
-   major = {customers[0].major}
-   address = {customers[0].address}
-   hostname = {customers[0].hostname}
-   num = {customers[0].num}
-   major2 = {customers[0].major2}
-   creiculum = {customers[0].creiculum}
+  <Paper className ={classes.root}>
+    <Table className = {classes.table}>
+      <TableHead>
+        <TableRow>
+          <TableCell>번호</TableCell>
+          <TableCell>학원명</TableCell>
+          <TableCell>형태</TableCell>
+          <TableCell>분야</TableCell>
+          <TableCell>주소</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+      {customers.map(c=> {
+   return ( 
+   <Customer  
+     key ={c.id} 
+     id = {c.id} 
+     name = {c.name}
+     type ={c.type}
+     major = {c.major}
+      address={c.address}
    /> 
-   <Customer
-   id = {customers[1].id}
-   image = {customers[1].image}
-   name = {customers[1].name}
-   type = {customers[1].type}
-   major = {customers[1].major}
-   address = {customers[1].address}
-   hostname = {customers[1].hostname}
-   num = {customers[1].num}
-   major2 = {customers[1].major2}
-   creiculum = {customers[1].creiculum}
-   />
-   <Customer
-   id = {customers[2].id}
-   image = {customers[2].image}
-   name = {customers[2].name}
-   type = {customers[2].type}
-   major = {customers[2].major}
-   address = {customers[2].address}
-   hostname = {customers[2].hostname}
-   num = {customers[2].num}
-   major2 = {customers[2].major2}
-   creiculum = {customers[2].creiculum}
-   />
-   </div>
-  );
+   );
+  }
+  )  
 }
+</TableBody> 
+ </Table>
+</Paper>
+  );
+   }
+  }
+  
+  
 
-export default App;
+export default withStyles(styles)(App);
