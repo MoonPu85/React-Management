@@ -1,22 +1,21 @@
 import React from 'react'
 import { render } from 'react';
+import TableRow from '@material-ui/core/TableRow'
+import TableCell from '@material-ui/core/TableCell'
 
 class Customer extends React.Component {
     render() {
         return(
-        <div>
-        <CustomerProfile 
-        id = {this.props.id}
-         image ={this.props.image} 
-         name = {this.props.name}/>
-        <Customerinfo type={this.props.type} 
-        major = {this.props.major}
-         address ={this.props.address}
-          hostname = {this.props.hostname}
-           num ={this.props.nume} 
-           major2= {this.props.major2} 
-           creiculum ={this.props.creiculum} />
-        </div>
+        <TableRow>
+                <TableCell> {this.props.id} </TableCell>
+                <TableCell> <img src src ={this.props.image} alt= "profile"></img> </TableCell>
+                <TableCell> {this.props.name} </TableCell>
+                <TableCell> {this.props.type} </TableCell>
+                <TableCell> {this.props.major} </TableCell>
+                <TableCell> {this.props.address} </TableCell>
+                
+
+        </TableRow>
     )
     }
 }
@@ -40,10 +39,8 @@ render(){
         <h2>{this.props.type}</h2>
         <p>{this.props.major}</p>
         <p>{this.props.address}</p>
-        <p>{this.props.hostname}</p>
-        <p>{this.props.num}</p>
-        <p>{this.props.major2}</p>
-        <p>{this.props.creiculum}</p>
+       
+       
         </div>
     )
 }
